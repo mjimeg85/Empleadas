@@ -22,6 +22,8 @@ public class Empleada {
     @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
     private BigDecimal sueldo;
+
+    @Column(name="estado_id")
     private int estado;
 
     @Column(name="fecha_alta")
