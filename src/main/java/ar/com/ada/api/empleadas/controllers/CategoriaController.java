@@ -17,7 +17,7 @@ public class CategoriaController {
     @PostMapping("/categorias") 
     public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria){ //ningun web method devuelve un void
         
-        GenericResponse respuesta = new GenericResponse;
+        GenericResponse respuesta = new GenericResponse();
 
         service.crearCategoria(categoria);
 
