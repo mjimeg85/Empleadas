@@ -25,6 +25,8 @@ public class CategoriaController {
         respuesta.id=categoria.getCategoriaId();
         respuesta.message="La categoría fue creada con éxito";
 
+        return ResponseEntity.ok(respuesta);
+
     }
 
     //GET /categorias
