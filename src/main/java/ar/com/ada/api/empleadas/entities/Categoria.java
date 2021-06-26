@@ -46,4 +46,16 @@ public class Categoria {
         this.sueldoBase = sueldoBase;
     }
 
+    public List<Empleada> getEmpleadas() {
+        return empleadas;
+    }
+
+    public void setEmpleadas(List<Empleada> empleadas) {
+        this.empleadas = empleadas;
+    }
+
+    public void agregarEmpleada (Empleada empleada){
+        this.empleadas.add(empleada);
+    }
+
 }
