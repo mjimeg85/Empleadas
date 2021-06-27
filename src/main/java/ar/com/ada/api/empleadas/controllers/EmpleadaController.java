@@ -15,7 +15,7 @@ public class EmpleadaController {
     @Autowired
     private EmpleadaService service;
 
-    @PostMapping("/empleadas")
+    @PostMapping("/empleados")
     public ResponseEntity<?> crearEmpleada(@RequestBody Empleada empleada) { // ningun web method devuelve un void
 
         GenericResponse respuesta = new GenericResponse();
@@ -31,7 +31,7 @@ public class EmpleadaController {
     }
 
     // GET /empleadas
-    @GetMapping("/empleadas") // hacer el mapping
+    @GetMapping("/empleados") // hacer el mapping
     public ResponseEntity<List<Empleada>> traerEmpleada() { // return Responde Entity
         return ResponseEntity.ok(service.traerEmpleada()); // return entity con el valor esperado
 
