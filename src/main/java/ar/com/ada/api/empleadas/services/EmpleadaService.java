@@ -17,7 +17,7 @@ public class EmpleadaService {
         repo.save(empleada);
     }
 
-    public List<Empleada> traerEmpleada(){
+    public List<Empleada> traerEmpleadas(){
         return repo.findAll();
     }
     

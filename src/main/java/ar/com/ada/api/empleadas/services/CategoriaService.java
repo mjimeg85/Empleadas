@@ -12,12 +12,22 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository repo;
 
-    public void crearCategoria(Categoria categoria){
+    public void crearCategoria(Categoria categoria) {
         repo.save(categoria);
     }
 
-    public List<Categoria> traerCategoria(){
+    public List<Categoria> traerCategoria() {
         return repo.findAll();
     }
-    
+
+    public Categoria buscarCategoria(Integer categoriaId) {
+
+        Optional<Categoria> resultado = repo.findById(categoriaId);
+        Categoria categoria = null;
+        if (resultado.isPresent()) {
+            categoria = resultado.get();
+        }
+        return categoria;
+    }
+
 }
