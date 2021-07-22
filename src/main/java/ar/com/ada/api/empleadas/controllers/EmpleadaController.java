@@ -19,9 +19,8 @@ public class EmpleadaController {
 
     @Autowired
     private EmpleadaService service;
-    @Autowired
-    CategoriaService categoriaService;
 
+    
     @PostMapping("/empleados")
     public ResponseEntity<?> crearEmpleada(@RequestBody InfoEmpleadaNueva empleadaInfo) { // ningun web method devuelve
                                                                                           // un void
@@ -60,6 +59,33 @@ public class EmpleadaController {
         Empleada empleada = service.buscarEmpleada(id);
 
         return ResponseEntity.ok(empleada);
+    }
+
+    // Detele/empleados/{id} --> Da de baja un empleado poniendo el campo estado en
+    // "baja"
+    // y la fecha de baja que sea el dia actual.
+    @DeleteMapping("/empleados/{id}")
+    public ResponseEntity<GenericResponse> bajaEmpleada(@PathVariable Integer id) {
+
+        service.bajaEmpleadaPorId(id);
+
+        GenericResponse respuesta = new GenericResponse();
+
+        respuesta.isOk = true;
+        respuesta.message = "La empleada fue dada de baja con exito";
+
+        return ResponseEntity.ok(respuesta);
+
+    }
+
+    // Get /empleados/categorias/{catId} --> Obtiene la lista de empleados de una
+    // categoria.
+
+    @GetMapping("/empleados/categorias/{catId}")
+    public ResponseEntity<List<Empleada>> obtenerEmpleadasPorCategoria(@PathVariable Integer catId) {
+
+        List<Empleada> empleadas = service.traerEmpleadaPorCategoria(catId);
+        return ResponseEntity.ok(empleadas);
     }
 
 }
