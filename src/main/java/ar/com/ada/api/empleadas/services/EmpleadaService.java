@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.empleadas.entities.Categoria;
 import ar.com.ada.api.empleadas.entities.Empleada;
 import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
+import ar.com.ada.api.empleadas.models.request.SueldoNuevoEmpleada;
 import ar.com.ada.api.empleadas.repos.EmpleadaRepository;
 
 @Service
@@ -50,6 +51,16 @@ public class EmpleadaService {
         Categoria categoria = categoriaService.buscarCategoria(catId);
         
         return categoria.getEmpleadas();
+    }
+
+    public void guardar(Empleada empleada) {
+        repo.save(empleada);
+    }
+
+    public void modificarSueldo(Integer id, SueldoNuevoEmpleada sueldoNuevoInfo) {
+        Empleada empleada = this.buscarEmpleada(id);
+        empleada.setSueldo(sueldoNuevoInfo.sueldoNuevo);
+        guardar(empleada);
     }
 
 }

@@ -10,6 +10,7 @@ import ar.com.ada.api.empleadas.entities.Categoria;
 import ar.com.ada.api.empleadas.entities.Empleada;
 import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
 import ar.com.ada.api.empleadas.models.request.InfoEmpleadaNueva;
+import ar.com.ada.api.empleadas.models.request.SueldoNuevoEmpleada;
 import ar.com.ada.api.empleadas.models.response.GenericResponse;
 import ar.com.ada.api.empleadas.services.CategoriaService;
 import ar.com.ada.api.empleadas.services.EmpleadaService;
@@ -19,6 +20,9 @@ public class EmpleadaController {
 
     @Autowired
     private EmpleadaService service;
+
+    @Autowired
+    CategoriaService categoriaService;
 
     
     @PostMapping("/empleados")
@@ -87,5 +91,18 @@ public class EmpleadaController {
         List<Empleada> empleadas = service.traerEmpleadaPorCategoria(catId);
         return ResponseEntity.ok(empleadas);
     }
+
+    @PutMapping ("/empleados/{id}/sueldos")
+    public ResponseEntity<GenericResponse> modificarSueldo(@PathVariable Integer id, @RequestBody SueldoNuevoEmpleada sueldoNuevoInfo){
+
+        service.modificarSueldo(id, sueldoNuevoInfo);
+        GenericResponse respuesta = new GenericResponse();
+
+        respuesta.isOk = true;
+        respuesta.message ="El sueldo ha sido actualizado";
+
+        return ResponseEntity.ok(respuesta);
+    }
+
 
 }
